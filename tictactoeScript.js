@@ -12,9 +12,11 @@ async function askQuestion(inputPrompt) {
 
     return answer;
 }
-
+console.log("\n==================== TIC-TAC-TOE ====================")
+console.log("\n===Player X starts first===\n")
 async function gameRun() {
     let exit='y';
+    let count=1;
     while (exit!=='n') {
 
         // Print the current board
@@ -22,9 +24,11 @@ async function gameRun() {
         let rows;
         let cols;
         let input;
+        
+        
 
         while(true){
-        rows = await askQuestion("Enter row number: ");
+        rows =Number( await askQuestion("Enter row number: "));
         if(rows<=2&&rows>=0)
         {
             break;
@@ -35,31 +39,35 @@ async function gameRun() {
         }
         }
         while(true)
-        {  cols = await askQuestion("Enter column number: ");
+        {  cols = Number(await askQuestion("Enter column number: "));
            if(cols<=2 && cols>=0)
+           { 
+            
             break;
+           }
         else
         {
             console.log("Invalid column number");
             continue;
         }
+        
         }
-     
-        while(1===1)
-        {
-         input = await askQuestion("Enter input (X or O): ");
-        if (input==="X" || input==="O")
-          {
-            break;
-          }
-          else
-          {
-            console.log("Invalid Input!!");
-            continue;
-          }
-        }
-        tictactoeApi.updateTable(rows, cols, input);
-
+           if (count%2!=0)
+           {
+            input ="X";
+            
+           }
+           else
+           {
+            input ="O"
+            
+           }
+        
+       
+        let done=tictactoeApi.updateTable(rows, cols, input);
+            if(done)
+                count++;
+        
         if (
             tictactoeApi.checkWinRows() ||
             tictactoeApi.checkWinCols() ||
@@ -69,7 +77,8 @@ async function gameRun() {
         ) {
             console.table(tictactoeApi.tictactoeLogic);
             
-             exit= await askQuestion("Enter y to play and n to exit: ");
+            
+             exit= await askQuestion("Enter n to exit or any other key to continue: ");
             if (exit==='n')
                 {
                  console.log("\n===============Game Over===============");
@@ -78,7 +87,16 @@ async function gameRun() {
             else
                 { 
                  console.log("\n==========New Game==========");
+                 if(count%2!=0)
+                 {
+                    console.log("\n===Player X starts first===")
+                 }
+                 else
+                 {
+                    console.log("\n===Player O starts first===")
+                 }
                  tictactoeApi.resetTable();
+
                 }
           }
     }
