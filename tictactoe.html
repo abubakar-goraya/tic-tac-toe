@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tic-Tac-Toe</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(135deg,#0f172a,#1e293b,#334155);
+
+    overflow:hidden;
+}
+
+/* Floating background circles */
+
+body::before,
+body::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    z-index:-1;
+
+}
+
+body::before{
+
+    background:#00d9ff;
+
+    top:-120px;
+    left:-120px;
+
+}
+
+body::after{
+
+    background:#7c3aed;
+
+    bottom:-120px;
+    right:-120px;
+
+}
+
+/* Main Card */
+
+.game{
+
+    width:470px;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.4);
+
+    text-align:center;
+
+}
+
+/* Title */
+
+h1{
+
+    color:white;
+
+    font-size:42px;
+
+    letter-spacing:3px;
+
+    margin-bottom:15px;
+
+    text-shadow:
+    0 0 10px cyan;
+
+}
+
+/* Turn Text */
+
+#turn{
+
+    color:#dbeafe;
+
+    font-size:20px;
+
+    font-weight:600;
+
+    margin-bottom:30px;
+
+}
+
+/* Table */
+
+table{
+
+    margin:auto;
+
+    border-collapse:separate;
+
+    border-spacing:12px;
+
+}
+
+/* Cells */
+
+td{
+
+    width:100px;
+    height:100px;
+
+    background:#1e293b;
+
+    border:2px solid rgba(255,255,255,.15);
+
+    border-radius:18px;
+
+    text-align:center;
+
+    vertical-align:middle;
+
+    font-size:48px;
+
+    font-weight:bold;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    user-select:none;
+
+}
+
+td:hover{
+
+    transform:translateY(-5px) scale(1.05);
+
+    background:#334155;
+
+    box-shadow:
+    0 0 18px cyan;
+
+}
+
+/* Pop animation */
+
+td:not(:empty){
+
+    animation:pop .25s ease;
+
+}
+
+@keyframes pop{
+
+0%{
+
+transform:scale(.5);
+opacity:0;
+
+}
+
+70%{
+
+transform:scale(1.15);
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+/* Restart Button */
+
+button{
+
+    margin-top:35px;
+
+    padding:14px 40px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(45deg,#06b6d4,#2563eb);
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+    0 12px 25px rgba(0,255,255,.45);
+
+}
+
+button:active{
+
+    transform:scale(.96);
+
+}
+
+/* Responsive */
+
+@media(max-width:550px){
+
+.game{
+
+width:95%;
+padding:25px;
+
+}
+
+td{
+
+width:80px;
+height:80px;
+
+font-size:40px;
+
+}
+
+h1{
+
+font-size:32px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="game">
+
+<h1>TIC • TAC • TOE</h1>
+
+<p id="turn"></p>
+
+<table>
+
+<tbody>
+
+<tr>
+
+<td class="box" data-rows="0" data-cols="0"></td>
+<td class="box" data-rows="0" data-cols="1"></td>
+<td class="box" data-rows="0" data-cols="2"></td>
+
+</tr>
+
+<tr>
+
+<td class="box" data-rows="1" data-cols="0"></td>
+<td class="box" data-rows="1" data-cols="1"></td>
+<td class="box" data-rows="1" data-cols="2"></td>
+
+</tr>
+
+<tr>
+
+<td class="box" data-rows="2" data-cols="0"></td>
+<td class="box" data-rows="2" data-cols="1"></td>
+<td class="box" data-rows="2" data-cols="2"></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<button id="button" onclick="restartGame()">
+
+🔄 Restart Game
+
+</button>
+
+</div>
+
+<script src="Logic.js"></script>
+<script src="Script.js"></script>
+
+</body>
+</html>

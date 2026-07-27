@@ -1,7 +1,7 @@
 const readline = require('node:readline/promises');
 const { stdin, stdout } = require('node:process');
 
-const tictactoeApi = require('./tictactoeLogic');
+const tictactoeApi = require('./TerminalLogic');
 
 async function askQuestion(inputPrompt) {
     const rl = readline.createInterface({ input: stdin, output: stdout });
