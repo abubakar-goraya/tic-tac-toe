@@ -143,6 +143,6 @@ function resetTable() {
 
 module.exports = {
 
-    tictactoeLogic: table,updateTable,resetTable,checkDraw,checkWinCols,checkWinRows,checkWinPDiagonal,checkWinSDiagonal
+    TerminalLogic: table,updateTable,resetTable,checkDraw,checkWinCols,checkWinRows,checkWinPDiagonal,checkWinSDiagonal
 
 };

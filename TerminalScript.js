@@ -20,7 +20,7 @@ async function gameRun() {
     while (exit!=='n') {
 
         // Print the current board
-        console.table(tictactoeApi.tictactoeLogic);
+        console.table(tictactoeApi.TerminalLogic);
         let rows;
         let cols;
         let input;
@@ -75,7 +75,7 @@ async function gameRun() {
             tictactoeApi.checkWinSDiagonal() ||
             tictactoeApi.checkDraw()
         ) {
-            console.table(tictactoeApi.tictactoeLogic);
+            console.table(tictactoeApi.TerminalLogic);
             
             
              exit= await askQuestion("Enter n to exit or any other key to continue: ");
